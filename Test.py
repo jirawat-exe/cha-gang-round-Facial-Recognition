@@ -14,16 +14,12 @@ labelTr = []
 
 # Training Image
 
+img = cv2.imread('Tr/emoji/i (1)/t (1).pgm')
 
-
-img1 = cv2.imread('Tr/emoji/i(1)/t (1).pgm',0)
-cv2.imshow("Showcase",img1)
+cv2.imshow('img', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-""" 
-tr/emoji/i(n)
-"""
 
 
 #ฝากทำ TS โดยสุ่มเลือกรูปจากใน TR มาทำเป็นเทสเคส
