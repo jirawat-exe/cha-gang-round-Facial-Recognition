@@ -12,3 +12,4 @@ IMAGE_SIZE = (64, 128)
 
 Train_PATH = "./Image_Dataset/Train/"
 Test_PATH = "./Image_Dataset/Test/"
+
