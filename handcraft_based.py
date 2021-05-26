@@ -12,9 +12,6 @@ for _classname in range(1,16):
     path = 'images/Tr/emoji/i (' + str(_classname) + ')/t (' + str(_id) + ').pgm'
     img = cv2.imread(path,cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (128,128), interpolation = cv2.INTER_AREA)
-    # cv2.imshow('Pic of Expecting', img)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
     data.append(np.array(img).reshape(-1,1))
     labelTr.append(_classname)
     
