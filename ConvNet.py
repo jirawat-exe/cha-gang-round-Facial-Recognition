@@ -1,7 +1,4 @@
-# import torch
-# import torch.nn as nn
-# import torch.nn.functional as F
-# from torch import Tensor
+import torch
 from torch.nn import Linear, ReLU, Sequential, Conv2d, MaxPool2d, Module, BatchNorm2d, Dropout
 class ConvNet(Module):
     def init(self):

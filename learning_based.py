@@ -1,27 +1,30 @@
-import pandas as pd
+# import pandas as pd
 import numpy as np
-# from Net import Net
-from skimage.io import imread
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from tqdm import tqdm
-import cv2
-import numpy as np
+from torchvision import datasets, transforms, utils
+from torch.utils.data import DataLoader, random_split
+from GoogLeNet import GoogLeNet
+from torch.optim import Adam, SGD
+from torch.nn import CrossEntropyLoss
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from torch import Tensor
-from .utils import load_state_dict_from_url
-from typing import Optional, Tuple, List, Callable, Any
+import random
+from skimage.io import imread
+import cv2
+model = GoogLeNet()
 
-# train = pd.read
-# train.head()
+training_img = []
 
-train_img = []
 for _classname in range(1,16):
   for _id in range(1, 9):
     path = 'Tr/emoji/i (' + str(_classname) + ')/t (' + str(_id) + ').pgm'
     img = cv2.imread(path,cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(img, (128,128), interpolation = cv2.INTER_AREA)
-    train_img.append(_classname)
+    img /= 255.0
+    img = img.astype('float32')
+    # img = cv2.resize(img, (128,128), interpolation = cv2.INTER_AREA)
+    training_img.append(img)
+    training_x = np.array(training_img)
+    training_y = datasets.ImageFolder('Tr/emoji/i (' + str(_classname) + ')/t (' + str(_id) + ').pgm', transform='')
+criterion = CrossEntropyLoss()
+optimizer = SGD(model.parameters(), lr=0.001, momentum=0.9)
+if torch.cuda.is_available():
+  model = model.cuda()
+  criterion = criterion.cuda()
