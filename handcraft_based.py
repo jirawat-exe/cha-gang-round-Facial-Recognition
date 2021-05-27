@@ -38,8 +38,11 @@ SelectedVec= vec[:,0:PCs]
 
 # ขั้นที่5 Training Feature Extraction by using first ten eigenvectors
 EigenFace= np.dot(data0mean, SelectedVec)
+# print(EigenFace)
 featureTr= np.dot(EigenFace.T, data0mean)
+# print(featureTr)
 featureTr= featureTr.T
+# print(featureTr)
 
 # ขั้นที่6 Testing Feature Extraction by using first ten eigenvectors
 path = 'images/Tr/emoji/i (3)/t (8).pgm'
