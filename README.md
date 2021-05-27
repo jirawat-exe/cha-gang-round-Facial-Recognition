@@ -7,9 +7,23 @@
 5. ปรมัตถ์ สุริยะรังษี (IT/Multi)
 
 ## Project2 : Handcraft_base
-#### วิธี Run Code
+#### วิธีดึงรูปจาก Dataset
+```
+แง่วๆๆ
+```
 
+#### วิธี Run Code
+```
+แง่วๆๆ
+```
 
 
 ## Project3 : Learning_base
+#### วิธีดึงรูปจาก Dataset
+```
+แง่วๆๆ
+```
 #### วิธี Run Code
+```
+แง่วๆๆ
+```
