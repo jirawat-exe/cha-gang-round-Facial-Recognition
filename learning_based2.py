@@ -256,7 +256,8 @@ def train_n_batch_triplet(n, data_loader, loss_func, model, opt, bs, eval_every,
 triplet_dl = Triplet_Image_Loader(img_arr_train, img_arr_test)
 model = TripletNet(feature_extractor_module=Resnet34FeatureExtractor(n_ch=1,feat_dim=128,pretrained=False)).to(device)
 loss_func = TripletLoss(.8)
-optimizer = optim.Adam(model.parameters(), lr=2e-4)
+# optimizer = optim.Adam(model.parameters(), lr=0.07)
+optimizer = optim.SGD(model.parameters(), lr=0.07, momentum=0.9)
 lr_finder = LRFinderTriplet(model=model, data_loader=triplet_dl, bs=8, loss_func=loss_func, opt=optimizer,
                     lr_range=[1e-7,1], max_iter=100)
 lr_finder.run()
@@ -264,7 +265,8 @@ lr_finder.run()
 triplet_dl = Triplet_Image_Loader(img_arr_train,img_arr_test)
 model = TripletNet(feature_extractor_module=Resnet34FeatureExtractor(n_ch=1,feat_dim=128,pretrained=False)).to(device)
 loss_func = TripletLoss(.3)
-optimizer = optim.Adam(model.parameters(),lr=2e-4)
+# optimizer = optim.Adam(model.parameters(),lr=0.07)
+# optimizer = optim.SGD(model.parameters(), lr=0.07, momentum=0.9)
 
 
 train_n_batch_triplet(n=200, data_loader=triplet_dl, loss_func=loss_func, model=model, opt=optimizer, bs=8,
