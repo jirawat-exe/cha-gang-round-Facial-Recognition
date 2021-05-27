@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import sklearn.neighbors as sn
-
+import matplotlib.pyplot as plt
 labelTr = []
 data = []
 
@@ -50,19 +50,24 @@ img2= cv2.imread(path,cv2.COLOR_BGR2GRAY)
 img2= cv2.resize(img2, (128,128), interpolation = cv2.INTER_AREA)
 tmpTs= np.array(img2).reshape(-1,1)
 featureTs= np.dot(EigenFace.T, tmpTs-meanVector).T
-labelTs= 2
 
 # ขั้นที่7 Image Classification
 classifier = sn.KNeighborsClassifier(n_neighbors=1)
 classifier.fit(featureTr, labelTr)
 out = classifier.predict(featureTs)
 print('Answer is ' + str(out))
-cv2.imshow('Pic of Expecting', img2)
-cv2.waitKey(0)
-path2 = 'images/Tr/emoji/i (' + str(out[0]) + ')/t (1).pgm'
-predictImg = cv2.imread(path2,cv2.COLOR_BGR2GRAY)
-predictImg = cv2.resize(predictImg, (128,128), interpolation = cv2.INTER_AREA)
-cv2.imshow('Pic of Predicting', predictImg)
+# cv2.imshow('Pic of Expecting', img2)
+# cv2.waitKey(0)
+# path2 = 'images/Tr/emoji/i (' + str(out[0]) + ')/t (1).pgm'
+# predictImg = cv2.imread(path2,cv2.COLOR_BGR2GRAY)
+# predictImg = cv2.resize(predictImg, (128,128), interpolation = cv2.INTER_AREA)
+# cv2.imshow('Pic of Predicting', predictImg)
+
+plt.figure()
+plt.imshow(featureTs)
+plt.show()
+plt.imshow(featureTr)
+plt.show()
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 

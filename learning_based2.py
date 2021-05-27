@@ -14,7 +14,8 @@ from pathlib import Path
 import PIL, mimetypes, os
 Path.ls = lambda x:list(x.iterdir())
 import torchvision.models as models
-
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 data_path = Path('images2/Tr/emoji')
 # print(data_path/'i (1)').ls())
 import matplotlib.image as mpimg
@@ -252,19 +253,19 @@ def train_n_batch_triplet(n, data_loader, loss_func, model, opt, bs, eval_every,
             print("iteration {}, training loss: {:.2f},".format(i,loss.item()))
 
 # find optimal lr
-# triplet_dl = Triplet_Image_Loader(img_arr_train, img_arr_test)
-# model = TripletNet(feature_extractor_module=Resnet34FeatureExtractor(n_ch=1,feat_dim=128,pretrained=False)).to(device)
-# loss_func = TripletLoss(.8)
-# optimizer = optim.Adam(model.parameters(), lr=5e-5)
-
+triplet_dl = Triplet_Image_Loader(img_arr_train, img_arr_test)
+model = TripletNet(feature_extractor_module=Resnet34FeatureExtractor(n_ch=1,feat_dim=128,pretrained=False)).to(device)
+loss_func = TripletLoss(.8)
+optimizer = optim.Adam(model.parameters(), lr=2e-4)
+lr_finder = LRFinderTriplet(model=model, data_loader=triplet_dl, bs=8, loss_func=loss_func, opt=optimizer,
+                    lr_range=[1e-7,1], max_iter=100)
+lr_finder.run()
 
 triplet_dl = Triplet_Image_Loader(img_arr_train,img_arr_test)
 model = TripletNet(feature_extractor_module=Resnet34FeatureExtractor(n_ch=1,feat_dim=128,pretrained=False)).to(device)
-loss_func = TripletLoss(.8)
-optimizer = optim.Adam(model.parameters(),lr=2e-5)
-lr_finder = LRFinderTriplet(model=model, data_loader=triplet_dl, bs=8, loss_func=loss_func, opt=optimizer,
-                    lr_range=[1e-7,1], max_iter=500)
-lr_finder.run()
+loss_func = TripletLoss(.3)
+optimizer = optim.Adam(model.parameters(),lr=2e-4)
 
-train_n_batch_triplet(n=10_000, data_loader=triplet_dl, loss_func=loss_func, model=model, opt=optimizer, bs=8,
-              eval_every=100, loss_every=50, N_way=10, n_val=100, model_path='model.pt')
+
+train_n_batch_triplet(n=200, data_loader=triplet_dl, loss_func=loss_func, model=model, opt=optimizer, bs=8,
+            eval_every=100, loss_every=50, N_way=8, n_val=80, model_path='model.pt')
