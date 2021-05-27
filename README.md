@@ -7,15 +7,17 @@
 5. ปรมัตถ์ สุริยะรังษี (IT/Multi)
 
 ## Project2 : Handcraft_base
+
+#### ไฟล์ที่ใช้ในการ Run
+training และ testing
+```
+handcraft_based.py
+```
 #### วิธีดึงรูปจาก Dataset
 ```
 แง่วๆๆ
 ```
 
-#### วิธี Run Code
-```
-แง่วๆๆ
-```
 
 
 ## Project3 : Learning_base
