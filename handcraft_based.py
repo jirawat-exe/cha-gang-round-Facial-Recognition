@@ -42,7 +42,8 @@ featureTr= np.dot(EigenFace.T, data0mean)
 featureTr= featureTr.T
 
 # ขั้นที่6 Testing Feature Extraction by using first ten eigenvectors
-path_test = 'dataset/Ts/i (3)/t (1).pgm'
+test_class = 3
+path_test = 'dataset/Ts/i (' + str(test_class) + ')/t (1).pgm'
 img2= cv2.imread(path_test,cv2.COLOR_BGR2GRAY)
 img2= cv2.resize(img2, (128,128), interpolation = cv2.INTER_AREA)
 tmpTs= np.array(img2).reshape(-1,1)
@@ -59,6 +60,10 @@ cv2.waitKey(0)
 path_predict = 'dataset/Tr/i (' + str(out[0]) + ')/t (1).pgm'
 predictImg = cv2.imread(path_predict,cv2.COLOR_BGR2GRAY)
 predictImg = cv2.resize(predictImg, (128,128), interpolation = cv2.INTER_AREA)
-cv2.imshow('Pic of Predicting', predictImg)
+
+if(test_class==out[0]):
+  cv2.imshow('Correct!', predictImg)
+else:
+  cv2.imshow('Not Correct.', predictImg)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
