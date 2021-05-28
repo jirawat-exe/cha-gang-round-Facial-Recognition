@@ -15,7 +15,24 @@ handcraft_based.py
 ```
 #### วิธีดึงรูปจาก Dataset
 ```
-แง่วๆๆ
+ดึงรูปมา Train
+  for _classname in range(1,16):
+    for _id in range(1, 8):
+      path_train = 'dataset/Tr/i (' + str(_classname) + ')/t (' + str(_id) + ').pgm'
+      img = cv2.imread(path_train,cv2.COLOR_BGR2GRAY)
+      img = cv2.resize(img, (128,128), interpolation = cv2.INTER_AREA)
+      data.append(np.array(img).reshape(-1,1))
+      labelTr.append(_classname)
+
+ ดึงรูปมา Test
+  test_class = 3
+  path_test = 'dataset/Ts/i (' + str(test_class) + ')/t (1).pgm'
+  img2= cv2.imread(path_test,cv2.COLOR_BGR2GRAY)
+  img2= cv2.resize(img2, (128,128), interpolation = cv2.INTER_AREA)
+  tmpTs= np.array(img2).reshape(-1,1)
+  featureTs= np.dot(EigenFace.T, tmpTs-meanVector).T
+  labelTs= 2
+  
 ```
 
 
@@ -23,9 +40,19 @@ handcraft_based.py
 ## Project3 : Learning_base
 #### วิธีดึงรูปจาก Dataset
 ```
-แง่วๆๆ
+    train_data = datasets.ImageFolder(root=TRAIN_ROOT, transform=TRAIN_PREPROCESS)
+    train_loader = DataLoader(train_data, batch_size=40, shuffle=True, num_workers=0)
+    
+    ซึ่ง TRAIN_ROOT เก็บ String PATH ของ dataset
+    
+    test_data = datasets.ImageFolder(root=TEST_ROOT, transform=TEST_PREPROCESS)
+    test_loader = DataLoader(test_data, batch_size=40, shuffle=True, num_workers=0)
+    
+    PATH model ที่ Train แล้ว
 ```
 #### วิธี Run Code
 ```
-แง่วๆๆ
+
+    เรียก main()
+
 ```
