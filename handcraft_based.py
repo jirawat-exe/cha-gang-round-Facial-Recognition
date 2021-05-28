@@ -16,7 +16,7 @@ if rate <= 0 :
   rate = 1
 for _classname in range(1,16):
   for _id in range(rate):
-    path = 'images/Tr/emoji/i (' + str(_classname) + ')/t (' + str(random.randint(1, 8)) + ').pgm'
+    path = 'dataset/Tr/emoji/i (' + str(_classname) + ')/t (' + str(random.randint(1, 8)) + ').pgm'
     img = cv2.imread(path,cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (128,128), interpolation = cv2.INTER_AREA)
     listimg.append(img)
@@ -53,7 +53,7 @@ featureTr= featureTr.T
 # print(featureTr)
 
 # ขั้นที่6 Testing Feature Extraction by using first ten eigenvectors
-#path = 'images/Tr/emoji/i (3)/t (8).pgm'
+#path = 'dataset/Tr/emoji/i (3)/t (8).pgm'
 #img2= cv2.imread(path,cv2.COLOR_BGR2GRAY)
 #img2= cv2.resize(img2, (128,128), interpolation = cv2.INTER_AREA)
 #tmpTs= np.array(img2).reshape(-1,1)
@@ -66,8 +66,8 @@ labelTs = []
 for _pred in range(1, 37):
   ranname = random.randint(1, 15)
   ranpic = random.randint(1, 8)
-  path2 = 'images/Tr/emoji/i ('+str(ranname)+')/t ('+str(ranpic)+').pgm'
-  # path2 = 'images/Tr/emoji/i ('+str(_pred)+')/t ('+str(ranpic)+').pgm'
+  path2 = 'dataset/Tr/emoji/i ('+str(ranname)+')/t ('+str(ranpic)+').pgm'
+  # path2 = 'dataset/Tr/emoji/i ('+str(_pred)+')/t ('+str(ranpic)+').pgm'
   img2 = cv2.imread(path2,cv2.COLOR_BGR2GRAY)
   img2 = cv2.resize(img2, (128,128), interpolation = cv2.INTER_AREA)
   listimgTs.append(img2)

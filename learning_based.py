@@ -10,8 +10,8 @@ from tqdm import tqdm
 import os
 import collections
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
-TEST_ROOT = 'images/Tr/emoji'  # path for test datasets
-TRAIN_ROOT = 'images/Tr/emoji'  # path for train datasets
+TEST_ROOT = 'dataset/Tr/emoji'  # path for test datasets
+TRAIN_ROOT = 'dataset/Tr/emoji'  # path for train datasets
 PATH = './GoogLeNet.pth'  # path for load model
 
 PRETRAINED_SIZE = 224  # define pretrained size
