@@ -100,7 +100,7 @@ def main():
                 ax.set_title(f'Expect: {label} \n Predict: {predict}')
                 ax.axis('off')
             plt.show()
-            # break
+            
             for label, prediction, image in zip(labels, predictions, images):
                 if label == prediction:
                     correct_pred[classes[label]] += 1
