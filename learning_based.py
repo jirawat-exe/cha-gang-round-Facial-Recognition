@@ -105,10 +105,9 @@ def main():
                 if label == prediction:
                     correct_pred[classes[label]] += 1
                 total_pred[classes[label]] += 1
-    # print accuracy for each class
-    print(correct_pred)
     od = collections.OrderedDict(sorted(correct_pred.items()))
-    print(od)
+    # print(od)
+    # print accuracy for each class
     for classname, correct_count in od.items():
         accuracy = 100 * float(correct_count) / total_pred[classname]
         print("Accuracy of class {:5s} = {:.1f} %".format(classname,accuracy))
